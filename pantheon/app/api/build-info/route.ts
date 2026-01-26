@@ -1,12 +1,11 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  // Try platform-specific environment variables first, then fallback to build-time SHA
+  // Try platform-specific environment variables first, then fallback to generic COMMIT_SHA
   const commitSha =
     process.env.VERCEL_GIT_COMMIT_SHA ||
     process.env.NETLIFY_COMMIT_REF ||
     process.env.COMMIT_SHA ||
-    process.env.NEXT_PUBLIC_COMMIT_SHA ||
     'unknown';
 
   const buildInfo = {
