@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { EMAIL_REGEX } from '@/lib/validation';
 
 export async function POST(request: Request) {
   try {
@@ -13,8 +14,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    // Email validation
+    if (!EMAIL_REGEX.test(email)) {
       return NextResponse.json(
         { error: 'Invalid email address' },
         { status: 400 }
